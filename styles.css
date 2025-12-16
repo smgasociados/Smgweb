@@ -1,0 +1,479 @@
+
+/* Animación de entrada */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Clase para aplicar la animación */
+.animate {
+    animation: slideIn 0.5s ease-out forwards;
+}
+
+/* Reset y estilos básicos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background: url('img/bodegon-balanza-justicia.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #333;
+    position: relative;
+    z-index: 1;
+    overflow-x: hidden; /* Previene el desplazamiento horizontal */
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 51, 102, 0.5); /* Ajusta la opacidad según sea necesario */
+    z-index: -1;
+}
+
+/* Header y Navbar */
+header {
+    background: linear-gradient(to right, #003366,#FFD700);
+    padding: 0rem 2rem;
+    color: #fff;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Estilos para el logo */
+.logo a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+/* Menú hamburguesa */
+.menu-icon {
+    display: none; /* Ocultar en pantallas grandes */
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.menu-icon svg {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s ease;
+}
+
+.menu-icon[aria-expanded="true"] svg {
+    transform: rotate(90deg); /* Cambia la rotación cuando el menú está abierto */
+}
+
+/* Enlaces del menú */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-links li {
+    position: relative;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1 rem;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links a:focus {
+    color: #003366;
+}
+
+.nav-links a::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: #003366;
+    transition: width 0.3s;
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+}
+
+.nav-links a:hover::after,
+.nav-links a:focus::after {
+    width: 100%;
+}
+
+/* Sección Hero con Fondo de Imagen */
+#hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 70px; /* Altura del header */
+    overflow: hidden; /* Para ocultar cualquier parte de la imagen que se desborde */
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 51, 102, 0.6); /* Ajusta la opacidad según sea necesario */
+    z-index: 1;
+}
+
+.hero-text {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: #fff;
+    padding: 0 1rem;
+}
+
+.hero-text h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    animation: fadeInUp 1s ease-out;
+}
+
+.hero-text p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+/* Clases para las imágenes */
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: no-repeat center center/cover;
+    transition: opacity 1s ease-in-out;
+}
+
+
+.cta {
+    display: inline-block;
+    padding: 0.75rem 2.5rem;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.cta:hover,
+.cta:focus {
+    background-color: #FFD700;
+    transform: translateY(-5px);
+}
+
+/* Secciones de Contenido */
+.content-section {
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo semitransparente */
+    margin-bottom: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    animation: fadeIn 1s forwards;
+}
+
+.content-section h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    color: #003366;
+}
+
+.content-section p {
+    text-align: center;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #555;
+}
+
+/* Servicios y Equipo */
+
+.service-container, .team-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.service, .team-member {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 2rem;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.service:hover,
+.team-member:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.service h3, .team-member h3 {
+    margin-bottom: 1rem;
+    color: #003366;
+}
+
+.service p, .team-member p {
+    color: #555;
+}
+
+.team-member img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    border: 3px solid #FFD700;
+}
+
+.service a, .team-member a {
+    pointer-events: visible;
+    color: inherit; /* Mantiene el color del texto sin resaltar el enlace */
+    text-decoration: none; /* Quita el subrayado si aplica */
+}
+
+/* Formulario de Contacto */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #003366;
+}
+
+input, textarea {
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+input:focus, textarea:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+button {
+    padding: 0.75rem 2rem;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 50px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+button:hover,
+button:focus {
+    background-color: #003366;
+    transform: translateY(-3px);
+}
+
+/* Footer */
+footer {
+    background-color: #003366;
+    color: #ecf0f1;
+    padding: 2rem;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 250px;
+    margin: 1rem;
+}
+
+.footer-section h3 {
+    margin-bottom: 1rem;
+    color: #FFD700;
+}
+
+.footer-section a {
+    color: #ecf0f1;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-section a:hover,
+.footer-section a:focus {
+    color: #FFD700;
+    text-decoration: underline;
+}
+
+footer p {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+/* Botón Volver Arriba */
+.back-to-top {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    display: none; /* Oculto por defecto */
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+    }
+
+    .menu-icon {
+        display: block; /* Mostrar en dispositivos móviles */
+        position: absolute;
+        top: 1rem; /* Espaciado desde la parte superior */
+        right: 1rem; /* Espaciado desde la derecha */
+    }
+
+    .nav-links {
+        display: none; /* Ocultar por defecto */
+        flex-direction: column;
+        width: 100%;
+        background: rgba(0, 51, 102, 0.8);
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 100;
+    }
+
+    .nav-links.show {
+        display: flex; /* Mostrar el menú hamburguesa cuando sea necesario */
+    }
+
+    .nav-links li {
+        padding: 0.5rem 1rem;
+        text-align: center;
+    }
+
+    .hero-text h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-text p {
+        font-size: 1rem;
+    }
+
+    .content-section {
+      
+    padding: 2rem 1rem;
+    }
+}
+
+/* Sección de Noticias */
+/* Sección de Noticias */
+.news-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.news-item {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 2rem;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.news-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.news-item h3 {
+    margin-bottom: 1rem;
+    color: #003366;
+}
+
+.news-item p {
+    color: #555;
+}
+
+.news-item a {
+    color: #FFD700;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.news-item a:hover {
+    color: #003366;
+}
+
+/* Estilos Responsivos para la sección de Noticias */
+@media (max-width: 768px) {
+    .news-container {
+        grid-template-columns: 1fr;
+    }
+}
+
